@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { Event } from "./event-model";
+import { Event } from "./event.model";
 
 /**
  * Generated class for the EventPage page.

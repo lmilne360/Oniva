@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
-import { EventPage} from '../event/event';
-import { EventService} from '../event/event-service';
+import { EventPage } from '../event/event';
+import { EventService } from '../event/event.service';
 
 
 @Component({
@@ -10,18 +10,17 @@ import { EventService} from '../event/event-service';
   templateUrl: 'home.html',
   providers: [EventService]
 })
-export class HomePage {
- events: Array<any>
-  constructor(public navCtrl: NavController, public es: EventService) {
-    this.events = es.events;
-  }
-  ionViewDidLoad() {
-    console.log('HomePage Loaded');
+export class HomePage implements OnInit {
+  events: Array<any>
+  constructor(public navCtrl: NavController, public es: EventService) { }
+
+  ngOnInit() {
+    this.events = this.es.getEvents();
   }
 
-  selectEvent(event){
-    console.log(event)
-    this.navCtrl.push(EventPage, {event});
+  selectEvent(event) {
+    console.log("selected " + event.title)
+    this.navCtrl.push(EventPage, { event });
   }
-  
+
 }
