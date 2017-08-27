@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnChanges } from '@angular/core';
 import { Event } from './event.model';
 @Injectable()
-export class EventService {
+export class EventService implements OnChanges{
 
   events: Array<Event> = [
     new Event("Tiki Birthday", new Date().toISOString(), "A birthday party for our dear friend tiki"),
@@ -10,14 +10,20 @@ export class EventService {
     { title: "Gaming event", date: new Date().toISOString() }
   ]
 
-  constructor() { }
+  constructor() { 
+  }
 
+  ngOnChanges() {
+    return this.events
+  }
+  
   getEvents() {
     return this.events;
   }
 
   addEvent(event) {
     this.events.push(event)
+    console.log(event)
   }
 
   removeEvent(event) {
