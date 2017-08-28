@@ -37,7 +37,7 @@ export class NewEventPage {
   }
 
   ionViewDidLoad() {
-    console.log(' NewEventPage');
+    console.log('new Event Page loaded');
   }
 
 }
