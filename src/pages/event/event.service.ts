@@ -1,36 +1,43 @@
-import { Injectable, OnChanges } from '@angular/core';
-import { Event } from './event.model';
-@Injectable()
-export class EventService implements OnChanges{
+import { Injectable } from '@angular/core';
+import { Http, Headers } from '@angular/http';
+import 'rxjs/add/operator/map';
 
-  events: Array<Event> = [
+@Injectable()
+export class EventService {
+
+  /** events: Array<Event> = [
     new Event("Tiki Birthday", new Date().toISOString(), "A birthday party for our dear friend tiki"),
     { title: "Drinks", date: new Date().toISOString(), description: "Time to get wasted" },
     { title: "Lunch Special", date: new Date().toISOString(), description: "Food, glorious food" },
     { title: "Gaming event", date: new Date().toISOString() }
-  ]
+  ] */
 
-  constructor() { 
+  constructor(public http: Http) {
+    console.log(' Event Servive initialized...')
   }
 
-  ngOnChanges() {
-    return this.events
-  }
-  
   getEvents() {
-    return this.events;
+    return this.http.get('api/events')
+      .map(res => res.json());
   }
 
-  addEvent(event) {
-    this.events.push(event)
-    console.log(event)
+  addEvent(newEvent) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('/api/events', JSON.stringify(newEvent), { headers: headers })
+      .map(res => res.json());
   }
 
-  removeEvent(event) {
-    const index = this.events.indexOf(event)
-    if (index !== -1) {
-      this.events.splice(index, 1);
-    }
+  updateStatus(event) {
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.put('/api/events/' + event._id, JSON.stringify(event), { headers: headers })
+      .map(res => res.json());
+  }
+
+  deleteEvent(id) {
+    return this.http.delete('/api/events/' + id)
+      .map(res => res.json());
   }
 
 }

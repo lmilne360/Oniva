@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 
 import { EventPage } from '../event/event';
@@ -8,29 +8,15 @@ import { NewEventPage } from '../new-event/new-event'
 @IonicPage()
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html',
-  providers: [EventService]
+  templateUrl: 'home.html'
 })
-export class HomePage implements OnChanges, OnInit {
-  events: Array<any>
-  constructor(public navCtrl: NavController, public es: EventService) {
-    this.getEvents();
+export class HomePage {
+  events: Event[];
+  constructor(public navCtrl: NavController, public eventService: EventService) {
+    //this.getEvents();
   }
 
-  ionViewDidLoad() {
-    console.log(' HOMEPAGE');
-  }
-  ionViewWillEnter(){
-    console.log("getting events")
-    this.getEvents()
-
-  }
-  ngOnInit() {
-    console.log("init")
-  }
-
-  ngOnChanges() {
-    console.log('change')
+  ionViewWillEnter() {
     this.getEvents();
   }
 
@@ -44,7 +30,10 @@ export class HomePage implements OnChanges, OnInit {
   }
 
   getEvents() {
-    this.events = this.es.getEvents();
+    this.eventService.getEvents()
+      .subscribe(events => {
+        this.events = events;
+      });
   }
 
 }

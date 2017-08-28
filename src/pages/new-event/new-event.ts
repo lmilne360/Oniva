@@ -33,7 +33,6 @@ export class NewEventPage {
 
   createEvent(){
     this.es.addEvent(this.eventForm.value);
-    console.log(this.es.events);
     this.navCtrl.pop()
   }
 
