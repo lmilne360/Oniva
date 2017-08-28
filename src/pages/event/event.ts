@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 import { Event } from "./event.model";
-
-/**
- * Generated class for the EventPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { EventService } from "./event.service";
+import { NewEventPage } from '../new-event/new-event';
 
 @IonicPage()
 @Component({
@@ -17,8 +12,25 @@ import { Event } from "./event.model";
 })
 export class EventPage {
   event: Event;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private eventService: EventService, public ev: Events, public navCtrl: NavController, public navParams: NavParams) {
     this.event = navParams.get('event');
+    
+    ev.subscribe('event:updated', (updated) =>{
+      console.log("TRIGGERED", updated);
+      this.event = updated;
+    })
+  }
+
+  editEvent(event) {
+    console.log('Pushing event to edit')
+    this.navCtrl.push(NewEventPage, { event })
+  }
+
+  deleteEvent(event) {
+    console.log('Deleting event')
+    this.eventService.deleteEvent(event._id)
+      .subscribe(err => console.log(err));
+    this.navCtrl.pop();
   }
 
   ionViewDidLoad() {

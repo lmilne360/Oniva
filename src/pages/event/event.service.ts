@@ -1,18 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+//import 'rxjs/add/operator/catch';
+
 
 @Injectable()
 export class EventService {
 
-  /** events: Array<Event> = [
-    new Event("Tiki Birthday", new Date().toISOString(), "A birthday party for our dear friend tiki"),
-    { title: "Drinks", date: new Date().toISOString(), description: "Time to get wasted" },
-    { title: "Lunch Special", date: new Date().toISOString(), description: "Food, glorious food" },
-    { title: "Gaming event", date: new Date().toISOString() }
-  ] */
-
-  constructor(public http: Http) {
+  constructor(private http: Http) {
     console.log(' Event Servive initialized...')
   }
 
@@ -23,21 +19,23 @@ export class EventService {
 
   addEvent(newEvent) {
     var headers = new Headers();
+    console.log("EServive: ", newEvent)
     headers.append('Content-Type', 'application/json');
-    return this.http.post('/api/events', JSON.stringify(newEvent), { headers: headers })
-      .map(res => res.json());
+    return this.http.post('api/events', JSON.stringify(newEvent), { headers: headers })
+      .map(res => res.json())
   }
 
-  updateStatus(event) {
+  updateEvent(id, event) {
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.put('/api/events/' + event._id, JSON.stringify(event), { headers: headers })
+    return this.http.put('api/events/' + id, JSON.stringify(event), { headers: headers })
       .map(res => res.json());
   }
 
   deleteEvent(id) {
-    return this.http.delete('/api/events/' + id)
-      .map(res => res.json());
+    console.log(id)
+    return this.http.delete('api/events/' + id)
+      .map(res => res.json())
   }
 
 }

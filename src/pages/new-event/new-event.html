@@ -1,14 +1,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>new Event</ion-title>
+    <ion-title>{{formTitle}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <form [formGroup]="eventForm" (ngSubmit)="createEvent()">
+  <form [formGroup]="eventForm" (ngSubmit)="submitForm()">
     <ion-item>
       <ion-label>Title</ion-label>
       <ion-input type="text" formControlName="title"></ion-input>

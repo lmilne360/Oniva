@@ -19,12 +19,11 @@ router.get('/events', (req, res) => {
   })
 });
 
-
-
 // (Create) Save Event
 router.post('/events', (req, res) => {
   var event = req.body;
-  console.log(req.body)
+  console.log('Create Endpoint Reached');
+  console.log(event)
   if (!event.title) {
     res.status(400);
     res.json({
@@ -43,20 +42,22 @@ router.post('/events', (req, res) => {
 //(Update) UpdateEvent
 router.put('/events/:id', (req, res) => {
   let event = req.body;
-  var updatedEven = {};
-
-  if (!event) {
+  console.log(event)
+  if (!event || !event.title) {
     res.status(400);
     res.json({
       "error": "Bad Data"
     });
   } else {
+    console.log("updated", req.body._id, req.params.id)
     db.events.update({
       _id: mongojs.ObjectId(req.params.id)
     }, event, {}, (err, event) => {
       if (err) {
+        console.log(err)
         res.send(err);
       }
+      console.log(event)
       res.json(event);
     });
   }
@@ -65,6 +66,7 @@ router.put('/events/:id', (req, res) => {
 
 //(DESTROY) Delete Event
 router.delete('/events/:id', (req, res) => {
+  console.log('Delete Endpoint Reached')
   db.events.remove({
     _id: mongojs.ObjectId(req.params.id)
   }, (err, event) => {
