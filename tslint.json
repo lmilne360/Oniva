@@ -3,7 +3,11 @@
     "no-duplicate-variable": true,
     "no-unused-variable": [
       true
-    ]
+    ],
+    "align": [true, "parameters", "statements"],
+    "no-trailing-whitespace": [true, "ignore-comments"],
+    "semicolon": [true, "always"]
+
   },
   "rulesDirectory": [
     "node_modules/tslint-eslint-rules/dist/rules"

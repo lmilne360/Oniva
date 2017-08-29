@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+//import { Observable } from 'rxjs/Observable';
 //import 'rxjs/add/operator/catch';
 
 
@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 export class EventService {
 
   constructor(private http: Http) {
-    console.log(' Event Servive initialized...')
+    console.log(' Event Servive initialized...');
   }
 
   getEvents() {
@@ -19,10 +19,10 @@ export class EventService {
 
   addEvent(newEvent) {
     var headers = new Headers();
-    console.log("EServive: ", newEvent)
+    console.log("EServive: ", newEvent);
     headers.append('Content-Type', 'application/json');
     return this.http.post('api/events', JSON.stringify(newEvent), { headers: headers })
-      .map(res => res.json())
+      .map(res => res.json());
   }
 
   updateEvent(id, event) {
@@ -33,9 +33,9 @@ export class EventService {
   }
 
   deleteEvent(id) {
-    console.log(id)
+    console.log(id);
     return this.http.delete('api/events/' + id)
-      .map(res => res.json())
+      .map(res => res.json());
   }
 
 }

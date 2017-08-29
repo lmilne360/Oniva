@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 import { Event } from "./event.model";
 import { EventService } from "./event.service";
-import { NewEventPage } from '../new-event/new-event';
+import { EventForm } from './event-form/event-form';
 
 @IonicPage()
 @Component({
@@ -12,22 +12,24 @@ import { NewEventPage } from '../new-event/new-event';
 })
 export class EventPage {
   event: Event;
+
   constructor(private eventService: EventService, public ev: Events, public navCtrl: NavController, public navParams: NavParams) {
     this.event = navParams.get('event');
-    
-    ev.subscribe('event:updated', (updated) =>{
+    ev.subscribe('event:updated', (updated, id) => {
       console.log("TRIGGERED", updated);
       this.event = updated;
-    })
+      this.event._id = id;
+      ev.unsubscribe;
+    });
   }
 
   editEvent(event) {
-    console.log('Pushing event to edit')
-    this.navCtrl.push(NewEventPage, { event })
+    console.log('Pushing event to edit');
+    this.navCtrl.push(EventForm, { event });
   }
 
   deleteEvent(event) {
-    console.log('Deleting event')
+    console.log('Deleting event');
     this.eventService.deleteEvent(event._id)
       .subscribe(err => console.log(err));
     this.navCtrl.pop();

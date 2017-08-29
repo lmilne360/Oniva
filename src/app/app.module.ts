@@ -8,7 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import {EventPage } from '../pages/event/event';
 import {EventService } from '../pages/event/event.service';
-import {NewEventPage} from '../pages/new-event/new-event';
+import {EventForm} from '../pages/event/event-form/event-form';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,7 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     EventPage,
-    NewEventPage
+    EventForm
   ],
   imports: [
     BrowserModule,
@@ -32,8 +32,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     EventPage,
-    NewEventPage
-    
+    EventForm
   ],
   providers: [
     EventService,
