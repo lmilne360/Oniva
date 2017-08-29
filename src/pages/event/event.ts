@@ -16,7 +16,7 @@ export class EventPage {
   constructor(private eventService: EventService, public ev: Events, public navCtrl: NavController, public navParams: NavParams) {
     this.event = navParams.get('event');
     ev.subscribe('event:updated', (updated, id) => {
-      console.log("TRIGGERED", updated);
+      console.log("event triggered", updated);
       this.event = updated;
       this.event._id = id;
       ev.unsubscribe;
@@ -34,9 +34,5 @@ export class EventPage {
       .subscribe(err => console.log(err));
     this.navCtrl.pop();
   }
-
-  ionViewDidLoad() {
-    console.log('EventPage Loaded');
-  }
-
+  
 }

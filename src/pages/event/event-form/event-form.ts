@@ -63,8 +63,4 @@ export class EventForm {
     this.navCtrl.pop();
   }
 
-  ionViewDidLoad() {
-    console.log('new Event Page loaded');
-  }
-
 }

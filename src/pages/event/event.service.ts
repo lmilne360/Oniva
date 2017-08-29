@@ -8,9 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class EventService {
 
-  constructor(private http: Http) {
-    console.log(' Event Servive initialized...');
-  }
+  constructor(private http: Http) {}
 
   getEvents() {
     return this.http.get('api/events')
@@ -19,7 +17,7 @@ export class EventService {
 
   addEvent(newEvent) {
     var headers = new Headers();
-    console.log("EServive: ", newEvent);
+    console.log("Adding Event: ", newEvent);
     headers.append('Content-Type', 'application/json');
     return this.http.post('api/events', JSON.stringify(newEvent), { headers: headers })
       .map(res => res.json());
@@ -33,7 +31,7 @@ export class EventService {
   }
 
   deleteEvent(id) {
-    console.log(id);
+    console.log('Deleting item with id: ', id);
     return this.http.delete('api/events/' + id)
       .map(res => res.json());
   }

@@ -15,12 +15,10 @@ export class HomePage {
   constructor(public navCtrl: NavController, public eventService: EventService) { }
 
   ionViewWillEnter() {
-    console.log('entered');
     this.getEvents();
   }
 
   selectEvent(event) {
-    console.log("selected " + event.title);
     this.navCtrl.push(EventPage, { event });
   }
 
@@ -34,7 +32,7 @@ export class HomePage {
       .subscribe(events => {
         this.events = events;
       }, err => {
-        console.log("Error occured");
+        console.log(err);
       });
   }
 
