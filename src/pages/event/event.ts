@@ -34,5 +34,5 @@ export class EventPage {
       .subscribe(err => console.log(err));
     this.navCtrl.pop();
   }
-  
+
 }
