@@ -6,7 +6,6 @@ const apiController = require('../controllers/apiController');
 
 const eventController = require('../controllers/eventController');
 
-
 /* GET api listing. */
 router.route('/')
   .get(apiController.index);
@@ -19,4 +18,6 @@ router.route('/events/:id')
   .put(eventController.update) // Update event
   .delete(eventController.delete); // Delete event
 
+router.route('/:uid/events') // Get user events
+  .get(eventController.userEvents);
 module.exports = router;
