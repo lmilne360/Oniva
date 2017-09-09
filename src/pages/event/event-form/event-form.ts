@@ -56,7 +56,7 @@ export class EventForm {
   }
 
   updateEvent() {
-    let updatedEvent = this.eventForm.value;
+    const updatedEvent = this.eventForm.value;
     this.es.updateEvent(this.event._id, updatedEvent)
       .subscribe();
     this.ev.publish('event:updated', updatedEvent, this.event._id);

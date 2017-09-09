@@ -30,7 +30,7 @@ module.exports = {
     if (!event.title) {
       res.status(400);
       res.json({
-        error: 'Bad Data',
+        error: 'Bad Data'
       });
     } else {
       events.save(event, (err, data) => {
@@ -51,7 +51,7 @@ module.exports = {
       res.json({ error: 'Bad Data' });
     } else {
       events.update({
-        _id: mongojs.ObjectId(req.params.id),
+        _id: mongojs.ObjectId(req.params.id)
       }, event, {}, (err, data) => {
         if (err) {
           res.send(err);
@@ -64,7 +64,7 @@ module.exports = {
   // DELETE
   delete: (req, res) => {
     events.remove({
-      _id: mongojs.ObjectId(req.params.id),
+      _id: mongojs.ObjectId(req.params.id)
     }, (err, event) => {
       if (err) {
         res.send(err);
@@ -73,6 +73,6 @@ module.exports = {
         res.send('Item Deleted');
       }
     });
-  },
+  }
 
 };

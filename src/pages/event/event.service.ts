@@ -16,7 +16,7 @@ export class EventService {
   }
 
   addEvent(newEvent): Observable<any> {
-    var headers = new Headers();
+    const headers = new Headers();
     console.log("Adding Event: ", newEvent);
     headers.append('Content-Type', 'application/json');
     return this.http.post('api/events', JSON.stringify(newEvent), { headers: headers })
@@ -24,7 +24,7 @@ export class EventService {
   }
 
   updateEvent(id, event): Observable<any> {
-    var headers = new Headers();
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.put('api/events/' + id, JSON.stringify(event), { headers: headers })
       .map(res => res.json());

@@ -4,10 +4,10 @@ import { EventForm } from './event-form';
 
 @NgModule({
   declarations: [
-    EventForm,
+    EventForm
   ],
   imports: [
-    IonicPageModule.forChild(EventForm),
+    IonicPageModule.forChild(EventForm)
   ],
   exports: [
     EventForm

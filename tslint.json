@@ -4,10 +4,17 @@
     "no-unused-variable": [
       true
     ],
+    "no-duplicate-imports": true,
     "align": [true, "parameters", "statements"],
     "no-trailing-whitespace": [true, "ignore-comments"],
-    "semicolon": [true, "always"]
-
+    "semicolon": [true, "always"],
+    "prefer-const": true,
+    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
+    "arrow-return-shorthand": true,
+    "no-irregular-whitespace": true,
+    "triple-equals": true,
+    "space-before-function-paren": [true, "never"],
+    "eofline": true
   },
   "rulesDirectory": [
     "node_modules/tslint-eslint-rules/dist/rules"
