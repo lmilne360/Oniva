@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 import { Event } from "./event.model";
 import { EventService } from "./event.service";
-import { EventForm } from './event-form/event-form';
+
 
 @IonicPage()
 @Component({
@@ -22,7 +22,7 @@ export class EventPage {
   }
 
   editEvent(event) {
-    this.navCtrl.push(EventForm, { event });
+    this.navCtrl.push('EventForm', { event });
     this.ev.subscribe('event:updated', (updated, id) => {
       this.event = updated;
       this.event._id = id;

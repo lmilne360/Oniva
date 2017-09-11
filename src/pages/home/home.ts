@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 
-//import { EventPage } from '../event/event';
 import { EventService } from '../event/event.service';
-import { EventForm } from '../event/event-form/event-form';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -26,7 +24,7 @@ export class HomePage {
   }
 
   newEvent() {
-    this.navCtrl.push(EventForm);
+    this.navCtrl.push('EventForm');
   }
 
   getEvents() {
