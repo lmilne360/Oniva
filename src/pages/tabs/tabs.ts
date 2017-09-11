@@ -17,7 +17,7 @@ export class TabsPage {
 
   homeRoot = 'HomePage';
   myEventsRoot = 'MyEventsPage';
-  addEventRoot = 'AddEventPage';
+  addEventRoot = 'EventForm';
 
 
   constructor(public navCtrl: NavController) {}
