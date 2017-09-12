@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
+import { NavController, IonicPage} from 'ionic-angular';
 
 import { EventService } from '../event/event.service';
 import { Observable } from 'rxjs/Observable';
@@ -27,14 +27,14 @@ export class HomePage {
     this.navCtrl.push('EventForm');
   }
 
-  getEvents() {
+  getEvents(refresher?) {
     this.eventService.getEvents()
       .subscribe(data => {
         this.events = data;
+        if (refresher) {refresher.complete();}
       }, err => {
         console.log(err);
       });
   }
-
 
 }

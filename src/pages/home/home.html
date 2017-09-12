@@ -15,6 +15,11 @@
 </ion-header>
 
 <ion-content padding>
+
+    <ion-refresher (ionRefresh)="getEvents($event)">
+        <ion-refresher-content pullingText="Pull to refresh"></ion-refresher-content>
+    </ion-refresher>
+    
 <ion-card *ngFor="let event of events" (click)="selectEvent(event)">
   <ion-card-content>
     <ion-card-title>{{ event.title}} </ion-card-title>
