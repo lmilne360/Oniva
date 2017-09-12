@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 const bodyParser = require('body-parser');
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({
 
 // Point static path to build folder 'www'
 app.use(express.static(path.resolve(__dirname, 'www')));
+app.use(cors());
 
 // Set our API routes
 app.use('/api', api);
@@ -25,8 +27,10 @@ app.get('*', (req, res) => {
 });
 
 // Set port
-app.set('port', process.env.PORT || 8100);
-
+app.set('port', process.env.PORT || 80);
+/** */
 app.listen(app.get('port'), () => {
   console.log('listening to Port', app.get('port'));
 });
+
+//app.listen(80, () => console.log("listening on 80"));

@@ -70,7 +70,6 @@ module.exports = {
         res.send(err);
       } else {
         res.json(event);
-        res.send('Item Deleted');
       }
     });
   }
