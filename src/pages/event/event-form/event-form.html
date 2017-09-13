@@ -22,7 +22,7 @@
     <ion-item>
       <ion-label floating>Date</ion-label>
       <!-- <ion-textarea formControlName="date"></ion-textarea> -->
-      <ion-datetime formControlName="date" displayFormat="MMM/DD/YYYY"></ion-datetime>
+      <ion-datetime formControlName="date" displayFormat="MMM/DD/YYYY" min={{currentDate.toISOString()}} max={{currentDate.getFullYear()+1}}></ion-datetime>
     </ion-item>
 
     <ion-item>

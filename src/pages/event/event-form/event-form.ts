@@ -21,6 +21,7 @@ export class EventForm {
   private eventForm: FormGroup;
   formTitle: String;
   event: Event;
+  currentDate = new Date();
 
   constructor(private formBuilder: FormBuilder, public ev: Events, public navCtrl: NavController, public navParams: NavParams, private es: EventService) {
     if (!!navParams.get('event')) {
