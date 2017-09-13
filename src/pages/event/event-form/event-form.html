@@ -21,8 +21,15 @@
 
     <ion-item>
       <ion-label floating>Date</ion-label>
-      <ion-textarea formControlName="date"></ion-textarea>
+      <!-- <ion-textarea formControlName="date"></ion-textarea> -->
+      <ion-datetime formControlName="date" displayFormat="MMM/DD/YYYY"></ion-datetime>
     </ion-item>
+
+    <ion-item>
+        <ion-label floating>Time</ion-label>
+        <ion-datetime formControlName="date" displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
+    </ion-item>
+
     <ion-item>
       <ion-label floating>Location</ion-label>
       <ion-textarea formControlName="location"></ion-textarea>
