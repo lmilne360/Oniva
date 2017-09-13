@@ -31,9 +31,10 @@ export class HomePage {
     this.eventService.getEvents()
       .subscribe(data => {
         this.events = data;
-        if (refresher) {refresher.complete();}
+        refresher && refresher.complete();
       }, err => {
         console.log(err);
+        refresher && refresher.complete();
       });
   }
 
