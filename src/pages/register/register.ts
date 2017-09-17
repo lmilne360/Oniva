@@ -27,7 +27,9 @@ export class RegisterPage {
   }
 
   register(user: User){
-    this.userService.register(user);
+    this.userService.register(user)
+    .then(() =>this.navCtrl.setRoot('TabsPage'))
+    .catch(err => console.log("There was an error"));
   }
 
 }

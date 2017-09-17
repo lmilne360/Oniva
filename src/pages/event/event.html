@@ -9,13 +9,13 @@
   <ion-navbar>
     <ion-title>{{ event.title}}</ion-title>
 
-    <ion-buttons end>
+    <ion-buttons end *ngIf="currentUser.uid === event.uid">
       <button ion-button icon-only (click)="deleteEvent(event)">
           <ion-icon name='close'></ion-icon>
         </button>
     </ion-buttons>
 
-    <ion-buttons end>
+    <ion-buttons end *ngIf="currentUser.uid === event.uid">
       <button ion-button icon-only (click)="editEvent(event)">
           <ion-icon name='construct'></ion-icon>
         </button>

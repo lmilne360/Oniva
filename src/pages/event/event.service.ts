@@ -16,7 +16,8 @@ export class EventService {
       .map(res => res.json());
   }
 
-  addEvent(newEvent): Observable<any> {
+  addEvent(newEvent, userID): Observable<any> {
+    newEvent.uid = userID;
     const headers = new Headers();
     console.log("Adding Event: ", newEvent);
     headers.append('Content-Type', 'application/json');

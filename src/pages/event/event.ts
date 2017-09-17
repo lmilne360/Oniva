@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 import { Event } from "./event.model";
 import { EventService } from "./event.service";
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user';
 
 
 @IonicPage()
@@ -12,9 +14,13 @@ import { EventService } from "./event.service";
 })
 export class EventPage {
   event: Event;
+  currentUser: {};
 
-  constructor(private eventService: EventService, public ev: Events, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private userServive: UserService, private eventService: EventService, public ev: Events, public navCtrl: NavController, public navParams: NavParams) {
     this.event = navParams.get('event');
+    this.userServive.getUser().subscribe((user) => {
+      this.currentUser = user;
+    });
   }
 
   ionViewWillEnter() {

@@ -14,17 +14,34 @@
 
 
 <ion-content padding>
-  <ion-item>
-    <ion-label floating>Email</ion-label>
-    <ion-input type="" [(ngModel)]="user.email"></ion-input>
-  </ion-item>
+  <div *ngIf="error" color="danger">{{error.message}}</div>
 
-  <ion-item>
-    <ion-label floating>Password</ion-label>
-    <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-  </ion-item>
+  <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input type="text" formControlName="email" required></ion-input>
+    </ion-item>
 
-  <button ion-button (click)="login(user)">Login</button>
+    <ion-label color="danger" *ngIf="loginForm.get('email').invalid && loginForm.get('email').dirty" class="alert">
+        Email is Required
+    </ion-label>
+
+    <ion-item>
+      <ion-label floating>Password</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+
+    <ion-label color="danger" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].touched || loginForm.controls['password'].dirty)">
+      <p>Password is invalid</p>
+      <div *ngIf="loginForm.controls['password'].errors.required">*Password is Required</div>
+      <div *ngIf="loginForm.controls['password'].errors.minlength">*Must Be 6 letters long</div>
+    </ion-label>
+
+    <button ion-button type="submit" [disabled]="!loginForm.valid">Login</button>
+  </form> <br>
+
+
+  <ion-label color="secondary">Don't have an account? Sign up!</ion-label> 
   <button ion-button color="light" (click)="goToRegistration(user)">Register</button>
 
 </ion-content>

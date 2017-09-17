@@ -1,10 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 
 import { ListPage } from '../pages/list/list';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { UserService } from '../services/user.service';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,13 +14,21 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  //rootPage: any = HomePage;
-  rootPage: any = 'LoginPage';
+
+  rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private afAuth: AngularFireAuth, private userService: UserService, private mc: MenuController) {
     this.initializeApp();
+
+    this.afAuth.authState.subscribe(res => {
+      if (res && res.uid) {
+        this.rootPage = 'TabsPage';
+      } else {
+        this.rootPage='LoginPage';
+      }
+    });
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -26,6 +36,15 @@ export class MyApp {
       { title: 'List', component: ListPage }
     ];
 
+  }
+
+  signOut(){
+    this.userService.logout()
+    .then(() =>{
+      console.log("Signed Out");
+      this.mc.close();
+    })
+    .catch(err => console.log(err));
   }
 
   initializeApp() {
