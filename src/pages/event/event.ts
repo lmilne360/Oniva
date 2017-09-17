@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { Event } from "./event.model";
 import { EventService } from "./event.service";
 import { UserService } from '../../services/user.service';
-import { User } from '../../models/user';
+
 
 
 @IonicPage()
@@ -14,7 +14,7 @@ import { User } from '../../models/user';
 })
 export class EventPage {
   event: Event;
-  currentUser: {};
+  currentUser;
 
   constructor(private userServive: UserService, private eventService: EventService, public ev: Events, public navCtrl: NavController, public navParams: NavParams) {
     this.event = navParams.get('event');
@@ -28,6 +28,7 @@ export class EventPage {
   }
 
   editEvent(event) {
+    event.uid = this.currentUser.uid;
     this.navCtrl.push('EventForm', { event });
     this.ev.subscribe('event:updated', (updated, id) => {
       this.event = updated;

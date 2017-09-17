@@ -14,7 +14,6 @@ export class HomePage {
   events: Observable<Array<Event>>;
   constructor(public navCtrl: NavController, public eventService: EventService) {}
 
-
   ionViewWillEnter() {
     this.getEvents();
   }
@@ -23,9 +22,6 @@ export class HomePage {
     this.navCtrl.push('EventPage', { event });
   }
 
-  newEvent() {
-    this.navCtrl.push('EventForm');
-  }
 
   getEvents(refresher?) {
     this.eventService.getEvents()

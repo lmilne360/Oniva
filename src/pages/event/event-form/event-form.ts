@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, ToastController } from 'ionic-angular';
 
 import { EventService } from '../event.service';
 import { Event } from '../event.model';
@@ -25,7 +25,13 @@ export class EventForm implements OnInit {
   event: Event;
   currentDate = new Date();
 
-  constructor(private userService: UserService, private formBuilder: FormBuilder, public ev: Events, public navCtrl: NavController, public navParams: NavParams, private es: EventService) {
+  constructor(private userService: UserService,
+              private formBuilder: FormBuilder,
+              public ev: Events,
+              public navCtrl: NavController,
+              public navParams: NavParams,
+              private es: EventService,
+              private toastCtrl: ToastController) {
 
     this.userService.getUser()
     .subscribe((user) => this.currentUser = user);
@@ -50,6 +56,15 @@ export class EventForm implements OnInit {
     .subscribe((user) => this.currentUser = user);
   }
 
+  presentToast(msg) {
+    const toast = this.toastCtrl.create({
+      message: msg,
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
   submitForm() {
     if (this.formTitle === 'New Event') {
       console.log('Creating new event');
@@ -64,16 +79,26 @@ export class EventForm implements OnInit {
   createEvent() {
     this.es.addEvent(this.eventForm.value, this.currentUser.uid)
       .subscribe();
-    //this.navCtrl.pop();
-    this.navCtrl.setRoot('HomePage');
+    if (this.navCtrl.canGoBack()){
+      this.navCtrl.pop();
+      }else {
+        this.navCtrl.setRoot('MyEventsPage');
+      }
+    this.presentToast("Event was created sucessfully");
   }
 
   updateEvent() {
     const updatedEvent = this.eventForm.value;
+    updatedEvent.uid = this.currentUser.uid;
     this.es.updateEvent(this.event._id, updatedEvent)
       .subscribe();
     this.ev.publish('event:updated', updatedEvent, this.event._id);
-    this.navCtrl.pop();
+    if (this.navCtrl.canGoBack()){
+      this.navCtrl.pop();
+    } else {
+      this.navCtrl.setRoot('MyEventsPage');
+    }
+    this.presentToast("Event was sucessfully updated");
   }
 
 }

@@ -32,6 +32,10 @@ export class MyEventsPage {
     this.myEvents = this.eventService.getMyEvents(this.currentUser.uid);
   }
 
+  newEvent() {
+    this.navCtrl.push('EventForm');
+  }
+
   selectEvent(event) {
     this.navCtrl.push('EventPage', { event });
   }
