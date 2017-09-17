@@ -16,6 +16,11 @@ export class EventService {
       .map(res => res.json());
   }
 
+  getMyEvents(userID): Observable<any> {
+    return this.http.get(`${this.api}/${userID}/events`)
+    .map(res => res.json());
+  }
+
   addEvent(newEvent, userID): Observable<any> {
     newEvent.uid = userID;
     const headers = new Headers();

@@ -14,5 +14,12 @@
 
 
 <ion-content padding>
+  <ion-title *ngIf="(myEvents | async)?.length==0">Your Event List is currently empty</ion-title>
+    <ion-card *ngFor="let event of myEvents | async" (click)="selectEvent(event)">
+        <ion-card-content>
+          <ion-card-title>{{ event.title}} </ion-card-title>
+          <p>{{event.description}}</p>
+        </ion-card-content>
+      </ion-card>
 
 </ion-content>

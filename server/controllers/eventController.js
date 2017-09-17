@@ -16,7 +16,7 @@ module.exports = {
 
   // Get User Events
   userEvents: (req, res) => {
-    events.find({ u_id: req.params.uid }).sort({ _id: -1 }, (err, data) => {
+    events.find({ uid: req.params.uid }).sort({ _id: -1 }, (err, data) => {
       if (err) {
         return res.send(err);
       }
