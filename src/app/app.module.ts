@@ -12,6 +12,7 @@ import { EventService } from '../pages/event/event.service';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FIREBASE_CONFIG } from "./app.firebase.config";
+import { UserService } from '../services/user.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FIREBASE_CONFIG } from "./app.firebase.config";
   ],
   providers: [
     EventService,
+    UserService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
