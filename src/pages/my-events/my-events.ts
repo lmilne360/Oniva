@@ -1,9 +1,10 @@
 import { Component} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { EventService } from '../event/event.service';
+
 import { Event } from '../event/event.model';
 import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs/Observable';
+import { EventService } from '../../services/event.service';
 
 /**
  * Generated class for the MyEventsPage page.

@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 
 import { Event } from "./event.model";
-import { EventService } from "./event.service";
+
 import { UserService } from '../../services/user.service';
+import { EventService } from '../../services/event.service';
 
 
 

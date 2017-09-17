@@ -8,12 +8,13 @@ import { AngularFireAuthModule } from "angularfire2/auth";
 
 import { MyApp } from './app.component';
 import { ListPage } from '../pages/list/list';
-import { EventService } from '../pages/event/event.service';
+import { EventService } from '../services/event.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FIREBASE_CONFIG } from "./app.firebase.config";
 import { UserService } from '../services/user.service';
+
 
 @NgModule({
   declarations: [

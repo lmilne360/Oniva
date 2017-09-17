@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage} from 'ionic-angular';
 
-import { EventService } from '../event/event.service';
+
 import { Observable } from 'rxjs/Observable';
+import { EventService } from '../../services/event.service';
 
 
 @IonicPage()

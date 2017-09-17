@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams, Events, ToastController } from 'ionic-angular';
-
-import { EventService } from '../event.service';
 import { Event } from '../event.model';
 import { UserService } from '../../../services/user.service';
+import { EventService } from '../../../services/event.service';
+
 
 /**
  * Generated class for the EventForm page.
