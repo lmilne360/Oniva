@@ -4,6 +4,7 @@ import { EventPage } from './event';
 import { MomentModule } from 'angular2-moment';
 
 
+
 @NgModule({
   declarations: [
     EventPage
@@ -11,6 +12,7 @@ import { MomentModule } from 'angular2-moment';
   imports: [
     IonicPageModule.forChild(EventPage),
     MomentModule
+
   ]
 })
 export class EventPageModule {}

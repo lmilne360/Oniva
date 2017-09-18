@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -24,6 +26,8 @@ import { UserService } from '../services/user.service';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
     FormsModule,
