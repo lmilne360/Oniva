@@ -9,12 +9,6 @@
 
 <ion-content padding>
 
-    <md-form-field class="example-full-width">
-        <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
-        <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
-        <md-datepicker touchUi="true" #picker></md-datepicker>
-      </md-form-field>
-      <br> <br>
   <form [formGroup]="eventForm" (ngSubmit)="submitForm()">
     <ion-item>
       <ion-label floating>Title</ion-label>
@@ -33,8 +27,8 @@
     </ion-item>
 
     <ion-item>
-        <ion-label floating>Time</ion-label>
-        <ion-datetime formControlName="date" displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
+      <ion-label floating>Time</ion-label>
+      <ion-datetime formControlName="date" displayFormat="h:mm A" pickerFormat="h mm A"></ion-datetime>
     </ion-item>
 
     <ion-item>
