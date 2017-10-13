@@ -11,7 +11,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @IonicPage()
 @Component({
   selector: 'page-add-event',
-  templateUrl: 'add-event.html',
+  templateUrl: 'add-event.html'
 })
 export class AddEventPage {
 
