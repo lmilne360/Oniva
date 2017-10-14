@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
-import { AngularFireAuth } from 'angularfire2/auth';
+
 
 @IonicPage()
 @Component({
@@ -17,7 +17,7 @@ export class LoginPage {
   email:string = '';
   password:string = '';
 
-  constructor(private fb: FormBuilder, public navCtrl: NavController, public navParams: NavParams, private userService: UserService, private afAuth: AngularFireAuth) {
+  constructor(private fb: FormBuilder, public navCtrl: NavController, public navParams: NavParams, private userService: UserService) {
     this.loginForm = fb.group({
       'email': [null, Validators.required],
       'password': [null, Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(12)])]

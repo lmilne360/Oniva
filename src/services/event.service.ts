@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class EventService {
-  api = 'http://108.41.133.130/api';
+  api = 'https://oniva-api.herokuapp.com/api';
 
   constructor(private http: Http) {}
 
